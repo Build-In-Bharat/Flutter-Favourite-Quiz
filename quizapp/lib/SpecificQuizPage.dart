@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/Classes/Quiz.dart';
+import 'package:quizapp/Models/Quiz.dart';
 import 'package:quizapp/Components/QuestionCard.dart';
 import 'package:quizapp/Components/constants.dart';
 

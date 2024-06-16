@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizapp/Components/constants.dart';
 // import 'package:quizapp/ApiFunctions.dart';
-import 'package:quizapp/Classes/Quiz.dart';
+import 'package:quizapp/Models/Quiz.dart';
 import 'package:quizapp/Components/QuizCard.dart';
 import 'package:quizapp/Provider/QuizProvider.dart';
 
@@ -17,7 +18,6 @@ class _homePageState extends State<homePage> {
 
   @override
   void initState() {
-    // quizList = getQuiz();
     super.initState();
   }
 
@@ -31,19 +31,38 @@ class _homePageState extends State<homePage> {
             onRefresh: () {
               return value.refreshData().then((value) => null);
             },
-            child: ListView.separated(
-              itemCount: value.quizes.length,
-              separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 15,
-                );
-              },
-              itemBuilder: (context, index) {
-                return QuizCard(
-                  quiz: value.quizes[index],
-                );
-              },
-            ),
+            child: value.error != null
+                ? Center(
+                    child: Text(
+                      '${value.error}',
+                      style: const TextStyle(
+                        color: ColorConstant.primaryTextColor,
+                        fontSize: 25,
+                      ),
+                    ),
+                  )
+                : value.quizes == null
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: ColorConstant.primaryTextColor,
+                          valueColor: AlwaysStoppedAnimation(
+                              ColorConstant.activeTabColor),
+                          strokeWidth: 7,
+                        ),
+                      )
+                    : ListView.separated(
+                        itemCount: value.quizes!.length,
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(
+                            height: 15,
+                          );
+                        },
+                        itemBuilder: (context, index) {
+                          return QuizCard(
+                            quiz: value.quizes![index],
+                          );
+                        },
+                      ),
           );
         },
       ),

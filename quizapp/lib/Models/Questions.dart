@@ -1,4 +1,4 @@
-import 'package:quizapp/Classes/Options.dart';
+import 'package:quizapp/Models/Options.dart';
 
 class Question {
   int id;

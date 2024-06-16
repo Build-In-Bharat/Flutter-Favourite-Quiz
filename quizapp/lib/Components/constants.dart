@@ -11,4 +11,7 @@ class ColorConstant {
   static const favoriteEnableColor = Colors.red;
 
   static const buttonBackgroundColor = Colors.green;
+
+  static const activeTabColor = Colors.green;
+  static const inactiveTabColor = Colors.white;
 }

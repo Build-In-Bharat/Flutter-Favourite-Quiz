@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:quizapp/Classes/Quiz.dart';
+import 'package:quizapp/Models/Quiz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoriteProvider extends ChangeNotifier {

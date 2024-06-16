@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => QuizProvider(),
         ),
-        
       ],
       child: MaterialApp(
         title: 'Quiz App',
@@ -74,9 +73,10 @@ class _MyAppState extends State<MyApp> {
                   index = value;
                 });
               },
+              duration: const Duration(seconds: 1),
               iconSize: 30,
-              activeColor: ColorConstant.primaryTextColor,
-              color: ColorConstant.secondaryTextColor,
+              activeColor: ColorConstant.activeTabColor,
+              color: ColorConstant.inactiveTabColor,
               gap: 10,
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 22),
               tabs: const [

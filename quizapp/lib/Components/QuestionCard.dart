@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/Classes/Questions.dart';
+import 'package:quizapp/Models/Questions.dart';
 import 'package:quizapp/Components/constants.dart';
 
 class QuestionCard extends StatefulWidget {

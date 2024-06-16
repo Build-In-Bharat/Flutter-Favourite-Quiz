@@ -1,4 +1,4 @@
-import 'package:quizapp/Classes/Quiz.dart';
+import 'package:quizapp/Models/Quiz.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizapp/Classes/Quiz.dart';
+import 'package:quizapp/Models/Quiz.dart';
 import 'package:quizapp/Components/constants.dart';
 import 'package:quizapp/Provider/FavoriteQuizProvider.dart';
 import 'package:quizapp/SpecificQuizPage.dart';

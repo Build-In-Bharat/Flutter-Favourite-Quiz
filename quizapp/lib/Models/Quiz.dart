@@ -1,4 +1,4 @@
-import 'package:quizapp/Classes/Questions.dart';
+import 'package:quizapp/Models/Questions.dart';
 
 class QuizDetail {
   late int id;
