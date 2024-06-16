@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizapp/ApiFunctions.dart';
 import 'package:quizapp/Classes/Quiz.dart';
 import 'package:quizapp/Components/QuizCard.dart';
+import 'package:quizapp/Provider/QuizProvider.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -23,32 +25,21 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: FutureBuilder<List<QuizDetail>>(
-        future: quizList,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
-              List<QuizDetail> quiz = snapshot.data!;
-              return ListView.separated(
-                itemCount: quiz.length,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(
-                    height: 15,
-                  );
-                },
-                itemBuilder: (context, index) {
-                  return QuizCard(
-                    quiz: quiz[index],
-                  );
-                },
+      child: Consumer<QuizProvider>(
+        builder: (context, value, child) {
+          return ListView.separated(
+            itemCount: value.quizes.length,
+            separatorBuilder: (context, index) {
+              return const SizedBox(
+                height: 15,
               );
-            } else if (snapshot.hasError) {
-              return Text(
-                '${snapshot.error}',
+            },
+            itemBuilder: (context, index) {
+              return QuizCard(
+                quiz: value.quizes[index],
               );
-            }
-          }
-          return const CircularProgressIndicator();
+            },
+          );
         },
       ),
     );

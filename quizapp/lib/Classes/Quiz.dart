@@ -22,4 +22,10 @@ class QuizDetail {
           json['questions'].map((e) => Question.fromJson(e))),
     );
   }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "number_of_questions": numberOfQuestions,
+        "title": title,
+        "questions": List<dynamic>.from(questions.map((e) => e.toJson())),
+      };
 }

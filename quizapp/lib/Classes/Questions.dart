@@ -25,4 +25,11 @@ class Question {
           List<Options>.from(json['options'].map((e) => Options.fromJson(e))),
     );
   }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "question_text": questionText,
+        "views": views,
+        "votes": votes,
+        "options": List<dynamic>.from(options.map((e) => e.toJson())),
+      };
 }

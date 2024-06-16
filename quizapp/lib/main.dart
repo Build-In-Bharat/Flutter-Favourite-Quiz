@@ -5,6 +5,7 @@ import 'package:quizapp/Components/constants.dart';
 import 'package:quizapp/FavoritePage.dart';
 import 'package:quizapp/Home.dart';
 import 'package:quizapp/Provider/FavoriteQuizProvider.dart';
+import 'package:quizapp/Provider/QuizProvider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +36,10 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => FavoriteProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => QuizProvider(),
+        ),
+        
       ],
       child: MaterialApp(
         title: 'Quiz App',

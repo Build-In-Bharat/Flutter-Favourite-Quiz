@@ -21,7 +21,7 @@ class _QuizCardState extends State<QuizCard> {
   Widget build(BuildContext context) {
     return Consumer<FavoriteProvider>(
       builder: (context, value, child) {
-        bool isFavorite = value.quizID.contains(widget.quiz.id);
+        bool isFavorite = value.quizID.contains(widget.quiz.id.toString());
         return InkWell(
           onTap: () {
             Navigator.of(context).push(

@@ -22,4 +22,11 @@ class Options {
       votes: json['votes'],
     );
   }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "option_text": optionText,
+        "short_description": shortDescription,
+        "media": media,
+        "votes": votes,
+      };
 }
