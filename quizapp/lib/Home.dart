@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizapp/ApiFunctions.dart';
+// import 'package:quizapp/ApiFunctions.dart';
 import 'package:quizapp/Classes/Quiz.dart';
 import 'package:quizapp/Components/QuizCard.dart';
 import 'package:quizapp/Provider/QuizProvider.dart';
@@ -17,7 +17,7 @@ class _homePageState extends State<homePage> {
 
   @override
   void initState() {
-    quizList = getQuiz();
+    // quizList = getQuiz();
     super.initState();
   }
 
@@ -27,18 +27,23 @@ class _homePageState extends State<homePage> {
       padding: const EdgeInsets.all(10),
       child: Consumer<QuizProvider>(
         builder: (context, value, child) {
-          return ListView.separated(
-            itemCount: value.quizes.length,
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 15,
-              );
+          return RefreshIndicator(
+            onRefresh: () {
+              return value.refreshData().then((value) => null);
             },
-            itemBuilder: (context, index) {
-              return QuizCard(
-                quiz: value.quizes[index],
-              );
-            },
+            child: ListView.separated(
+              itemCount: value.quizes.length,
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  height: 15,
+                );
+              },
+              itemBuilder: (context, index) {
+                return QuizCard(
+                  quiz: value.quizes[index],
+                );
+              },
+            ),
           );
         },
       ),

@@ -6,7 +6,7 @@ import 'dart:convert';
 class QuizProvider extends ChangeNotifier {
   List<QuizDetail> quizes = [];
 
-  void getQuiz() async {
+  Future<List<QuizDetail>?> getQuiz() async {
     var url = Uri.parse('https://core.id8devhub.com/api/v1/quizzes/');
     var response = await http.get(url);
     var body = jsonDecode(response.body);
@@ -14,9 +14,15 @@ class QuizProvider extends ChangeNotifier {
       quizes.add(QuizDetail.fromJson(e));
     });
     notifyListeners();
+    return null;
   }
 
   QuizProvider() {
+    getQuiz();
+  }
+
+  Future<void> refreshData() async {
+    quizes.clear();
     getQuiz();
   }
 }
