@@ -1,15 +1,17 @@
+import 'package:favorite_quiz/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/quiz_provider.dart';
-import 'repositories/quiz_repository.dart';
-import 'services/api_service.dart';
-import 'screens/home_screen.dart';
+import 'package:favorite_quiz/providers/quiz_provider.dart';
+import 'package:favorite_quiz/repositories/quiz_repository.dart';
+import 'package:favorite_quiz/services/api_service.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final apiService = ApiService();
@@ -21,12 +23,10 @@ class MyApp extends StatelessWidget {
           create: (context) => QuizProvider(quizRepository: quizRepository),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Quiz App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomeScreen(),
+        home: WelcomeScreen(),
       ),
     );
   }

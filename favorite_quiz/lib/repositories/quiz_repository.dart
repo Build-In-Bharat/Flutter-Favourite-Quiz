@@ -1,18 +1,19 @@
-import '../models/quiz.dart';
-import '../services/api_service.dart';
+import 'package:favorite_quiz/services/api_service.dart'; // Import your ApiService or relevant service
 
 class QuizRepository {
   final ApiService apiService;
 
   QuizRepository({required this.apiService});
 
-  Future<List<Quiz>> getQuizzes() async {
+  Future<List<Map<String, dynamic>>> fetchQuizzes() async {
     try {
-      final response = await apiService.fetchQuizzes();
-      return response.map<Quiz>((quizJson) => Quiz.fromJson(quizJson)).toList();
+      // Use apiService to fetch quizzes
+      return await apiService.fetchQuizzes();
     } catch (e) {
-      print("Error in QuizRepository getQuizzes: $e");
-      throw e;
+      // Handle any errors that occur during fetching
+      throw Exception('Failed to fetch quizzes: $e');
     }
   }
+
+  // Other methods related to quiz repository can be added here
 }
