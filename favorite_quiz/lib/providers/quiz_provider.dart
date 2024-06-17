@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
-import '../models/quiz.dart';
 import '../repositories/quiz_repository.dart';
 
-class QuizProvider extends ChangeNotifier {
+class QuizProvider with ChangeNotifier {
   final QuizRepository quizRepository;
+  List<Map<String, dynamic>> _quizzes = [];
+  final List<Map<String, dynamic>> _favorites = [];
+  int _currentQuestionIndex = 0;
 
-  List<Quiz> _quizzes = [];
-  List<Quiz> get quizzes => _quizzes;
+  QuizProvider({required this.quizRepository}) {
+    fetchQuizzes();
+  }
 
-  QuizProvider({required this.quizRepository});
+  List<Map<String, dynamic>> get quizzes => _quizzes;
+  List<Map<String, dynamic>> get favorites => _favorites;
+  int get currentQuestionIndex => _currentQuestionIndex;
 
   Future<void> fetchQuizzes() async {
-    try {
-      _quizzes = await quizRepository.getQuizzes();
+    _quizzes = await quizRepository.fetchQuizzes();
+    notifyListeners();
+  }
+
+  void nextQuestion() {
+    if (_currentQuestionIndex < _quizzes.length - 1) {
+      _currentQuestionIndex++;
       notifyListeners();
-    } catch (e) {
-      print("Error in QuizProvider fetchQuizzes: $e");
     }
+  }
+
+  void addFavorite(Map<String, dynamic> question) {
+    _favorites.add(question);
+    notifyListeners();
   }
 }
