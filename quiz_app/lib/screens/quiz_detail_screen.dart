@@ -41,22 +41,22 @@ class QuizDetailScreenState extends State<QuizDetailScreen> {
       body: Card(
         margin: const EdgeInsets.fromLTRB(35.0, 80.0, 35.0, 80.0),
         color: kColorPrimary,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Question ${_currentQuestionIndex + 1}: ${question.questionText}',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: kColorBackground,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Question ${_currentQuestionIndex + 1}: ${question.questionText}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: kColorBackground,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: Column(
+                const SizedBox(height: 10),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: question.options.map((option) {
                     return Padding(
@@ -82,52 +82,52 @@ class QuizDetailScreenState extends State<QuizDetailScreen> {
                     );
                   }).toList(),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (_currentQuestionIndex > 0)
-                      GestureDetector(
-                        onTap: _prevQuestion,
-                        child: Container(
-                          width: 75,
-                          padding: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: kColorSecondary,
-                            border: Border.all(color: kColorBackground),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: const Center(
-                            child: Text('Prev',
-                                style: TextStyle(color: kColorBackground)),
-                          ),
-                        ),
-                      ),
-                    const SizedBox(width: 20),
-                    if (_currentQuestionIndex <
-                        widget.quiz.questions.length - 1)
-                      GestureDetector(
-                        onTap: _nextQuestion,
-                        child: Container(
-                          width: 75,
-                          padding: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: kColorSecondary,
-                            border: Border.all(color: kColorBackground),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: const Center(
-                            child: Text('Next',
-                                style: TextStyle(color: kColorBackground)),
+                const SizedBox(height: 20),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (_currentQuestionIndex > 0)
+                        GestureDetector(
+                          onTap: _prevQuestion,
+                          child: Container(
+                            width: 75,
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: kColorSecondary,
+                              border: Border.all(color: kColorBackground),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Center(
+                              child: Text('Prev',
+                                  style: TextStyle(color: kColorBackground)),
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                      const SizedBox(width: 20),
+                      if (_currentQuestionIndex <
+                          widget.quiz.questions.length - 1)
+                        GestureDetector(
+                          onTap: _nextQuestion,
+                          child: Container(
+                            width: 75,
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: kColorSecondary,
+                              border: Border.all(color: kColorBackground),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: const Center(
+                              child: Text('Next',
+                                  style: TextStyle(color: kColorBackground)),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
